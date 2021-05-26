@@ -3,6 +3,15 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 const app: express.Application = express();
 const greeting: string = 'Hello';
 const numbers: number[] = [1, 2, 3, 4];
+let tempViewCount: number = 1;
+
+const getAndIncrementViewCount = (req: Request, res: Response, next: NextFunction) => {
+    tempViewCount++
+    console.log(`Visits = ${tempViewCount}, ${req.method} ${req.path}`);
+    next();
+}
+app.use(getAndIncrementViewCount);
+
 
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
     res.send(greeting);

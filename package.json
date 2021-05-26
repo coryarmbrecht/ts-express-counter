@@ -1,8 +1,8 @@
 {
-  "name": "ts-express-starter",
+  "name": "ts-express-counter",
   "version": "0.0.1",
-  "description": "Just a quick starter for ts and express.",
-  "homepage": "https://github.com/coryarmbrecht/ts-express-starter",
+  "description": "Just a JSON-based counter for Express, written in TypeScript.",
+  "homepage": "https://github.com/coryarmbrecht/ts-express-counter.git",
   "main": "dist/app.js",
   "scripts": {
     "start": "node dist/app.js",
