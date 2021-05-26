@@ -1,2 +1,2 @@
-#TS Express Starter
-Just to quickly get started with some personal projects.
+# TS Express Counter
+JSON-based counter. First application is for a "visitors counter".

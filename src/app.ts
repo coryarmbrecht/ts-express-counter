@@ -1,13 +1,43 @@
+import { count } from 'console';
 import express, { Application, Request, Response, NextFunction } from 'express';
+import fs from 'fs';
+import path from 'path';
 
 const app: express.Application = express();
 const greeting: string = 'Hello';
 const numbers: number[] = [1, 2, 3, 4];
 let tempViewCount: number = 1;
 
-const getAndIncrementViewCount = (req: Request, res: Response, next: NextFunction) => {
+const getAndIncrementTempViewCount = (req: Request, res: Response, next: NextFunction) => {
     tempViewCount++
-    console.log(`Visits = ${tempViewCount}, ${req.method} ${req.path}`);
+    console.log(`Visits ${tempViewCount} ${req.method} ${req.path}`);
+    next();
+}
+//app.use(getAndIncrementTempViewCount);
+
+const getAndIncrementViewCount = (req: Request, res: Response, next: NextFunction) => {
+    let visitsCount: number = 1;
+    //let counterJSON: any = fs.readFileSync('../counter.json').toJSON()
+    //console.log(counterJSON);
+
+    //visitsCount = counterJSON.visits;
+
+
+
+    // Read the counter JSON file
+    let counterJSON = JSON.parse(fs.readFileSync('./counter.json', 'utf-8'));
+    console.log('counterJSON = ', counterJSON)
+
+    // Set an oldVisits var
+    let oldVisits: number = counterJSON.visits;
+
+    // Increment visits number by one, and set to the originally read JSON file contents
+    const newVisits: number = oldVisits + 1;
+    counterJSON.visits = newVisits;
+
+    // Write the newly updated contents to JSON file
+    fs.writeFileSync('./counter.json', JSON.stringify(counterJSON));
+    console.log('New visit count written. It should be :', newVisits)
     next();
 }
 app.use(getAndIncrementViewCount);
