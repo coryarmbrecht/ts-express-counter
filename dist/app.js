@@ -16,11 +16,7 @@ var getAndIncrementTempViewCount = function (req, res, next) {
 };
 //app.use(getAndIncrementTempViewCount);
 var getAndIncrementViewCount = function (req, res, next) {
-    var visitsCount = 1;
-    //let counterJSON: any = fs.readFileSync('../counter.json').toJSON()
-    //console.log(counterJSON);
-    //visitsCount = counterJSON.visits;
-    //console.log(`path = ${req.path}, baseUrl = ${req.baseUrl}, originalUrl = ${req.originalUrl}`)
+    /*console.log(`path = ${req.path}, baseUrl = ${req.baseUrl}, originalUrl = ${req.originalUrl}`)*/
     if (req.path == '/') {
         console.log('/ hit.');
         // Read the counter JSON file
